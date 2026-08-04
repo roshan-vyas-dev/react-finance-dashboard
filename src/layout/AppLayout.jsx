@@ -1,7 +1,7 @@
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 
-function AppLayout() {
+function AppLayout({children}) {
     return (
         <div className="min-h-screen">
             <Header />
@@ -10,7 +10,7 @@ function AppLayout() {
                 <Sidebar />
 
                 <main className="flex-1">
-                    Main Content
+                    {children}
                 </main>
             </div>
         </div>
