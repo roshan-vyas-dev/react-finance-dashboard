@@ -1,9 +1,9 @@
 
 function Sidebar() {
   return (
-    <div>
-      
-    </div>
+   <aside>
+    Sidebar
+   </aside>
   )
 }
 
