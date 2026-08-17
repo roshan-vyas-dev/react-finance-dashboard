@@ -10,11 +10,13 @@ function TransactionItem({ transaction }) {
       <p
         className={`shrink-0 font-semibold ${
           isIncome ? "text-green-600" : "text-red-600"
-        }`}>
+        }`}
+      >
         {isIncome ? "+" : "-"}₹{transaction.amount.toLocaleString("en-IN")}
       </p>
     </div>
   );
 }
+
 
 export default TransactionItem;
