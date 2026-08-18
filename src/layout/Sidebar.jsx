@@ -9,8 +9,7 @@ function Sidebar() {
                     isActive
                         ? "rounded-md bg-blue-100 px-3 py-2 text-blue-700"
                         : "rounded-md px-3 py-2 text-gray-700"
-                }
-            >
+                } >
                 Dashboard
             </NavLink>
 
@@ -20,8 +19,7 @@ function Sidebar() {
                     isActive
                         ? "rounded-md bg-blue-100 px-3 py-2 text-blue-700"
                         : "rounded-md px-3 py-2 text-gray-700"
-                }
-            >
+                } >
                 Transactions
             </NavLink>
 
@@ -31,8 +29,7 @@ function Sidebar() {
                     isActive
                         ? "rounded-md bg-blue-100 px-3 py-2 text-blue-700"
                         : "rounded-md px-3 py-2 text-gray-700"
-                }
-            >
+                }  >
                 Categories
             </NavLink>
         </aside>
