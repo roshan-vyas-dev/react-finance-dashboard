@@ -1,31 +1,19 @@
-function Categories() {
-  const categories = [
-    {
-      id: 1,
-      name: "Food",
-      amount: 500,
-      type: "expense",
-    },
-    {
-      id: 2,
-      name: "Income",
-      amount: 40000,
-      type: "income",
-    },
-    {
-      id: 3,
-      name: "Utilities",
-      amount: 2500,
-      type: "expense",
-    },
-  ];
+import transactions from "../../data/transactions";
 
-  const expenseCategories = categories.filter(
-    (item) => item.type === "expense"
+function Categories() {
+  const expenseTransactions = transactions.filter(
+    (transaction) => transaction.type === "expense"
   );
 
-  const totalExpense = expenseCategories.reduce((total, category) => {
-    return total + category.amount;
+  const categoryTotals = expenseTransactions.reduce((total, transaction) => {
+    total[transaction.category] =
+      (total[transaction.category] || 0) + transaction.amount;
+
+    return total;
+  }, {});
+
+  const totalExpense = expenseTransactions.reduce((total, transaction) => {
+    return total + transaction.amount;
   }, 0);
 
   return (
@@ -34,7 +22,7 @@ function Categories() {
 
       <h2>Expense Breakdown</h2>
 
-      {expenseCategories.length > 0 ? (
+      {Object.keys(categoryTotals).length > 0 ? (
         <>
           <div>
             <p className="text-sm text-gray-500">Total Expenses</p>
@@ -45,13 +33,13 @@ function Categories() {
           </div>
 
           <div className="space-y-3">
-            {expenseCategories.map((category) => {
-              const percentage = (category.amount / totalExpense) * 100;
+            {Object.entries(categoryTotals).map(([name, amount]) => {
+              const percentage = (amount / totalExpense) * 100;
 
               return (
-                <div key={category.id} className="rounded-lg border p-4">
+                <div key={name} className="rounded-lg border p-4">
                   <div className="flex justify-between">
-                    <p>{category.name}</p>
+                    <p>{name}</p>
 
                     <p className="text-sm text-gray-500">
                       {percentage.toFixed(1)}%
@@ -59,7 +47,7 @@ function Categories() {
                   </div>
 
                   <p className="font-semibold">
-                    ₹{category.amount.toLocaleString("en-IN")}
+                    ₹{amount.toLocaleString("en-IN")}
                   </p>
 
                   <div className="h-2 w-full rounded-full bg-gray-200">

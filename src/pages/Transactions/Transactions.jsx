@@ -1,33 +1,12 @@
 import { useState } from "react";
 import TransactionItem from "../../components/RecentTransactions/TransactionItem";
+import transactions from "../../data/transactions";
 
 function Transactions() {
   const [selectedType, setSelectedType] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
 
-  const transactions = [
-    {
-      id: 1,
-      title: "Grocery",
-      category: "Food",
-      amount: 500,
-      type: "expense",
-    },
-    {
-      id: 2,
-      title: "Salary",
-      category: "Income",
-      amount: 40000,
-      type: "income",
-    },
-    {
-      id: 3,
-      title: "Electricity Bill",
-      category: "Utilities",
-      amount: 2500,
-      type: "expense",
-    },
-  ];
+
 
   const filteredTransactions = transactions.filter((transaction) => {
     const matchesType =
@@ -59,7 +38,8 @@ function Transactions() {
             selectedType === "all"
               ? "rounded-md bg-blue-600 px-4 py-2 text-white"
               : "rounded-md border px-4 py-2"
-          }>
+          }
+        >
           All
         </button>
 
@@ -69,7 +49,8 @@ function Transactions() {
             selectedType === "income"
               ? "rounded-md bg-blue-600 px-4 py-2 text-white"
               : "rounded-md border px-4 py-2"
-          } >
+          }
+        >
           Income
         </button>
 
@@ -79,7 +60,8 @@ function Transactions() {
             selectedType === "expense"
               ? "rounded-md bg-blue-600 px-4 py-2 text-white"
               : "rounded-md border px-4 py-2"
-          } >
+          }
+        >
           Expense
         </button>
       </div>
