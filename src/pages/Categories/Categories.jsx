@@ -18,16 +18,16 @@ function Categories() {
 
   return (
     <div className="space-y-6">
-      <h1>Categories</h1>
+      <h1 className="text-2xl font-bold">Categories</h1>
 
-      <h2>Expense Breakdown</h2>
+      <h2 className="text-lg font-semibold">Expense Breakdown</h2>
 
       {Object.keys(categoryTotals).length > 0 ? (
         <>
           <div>
             <p className="text-sm text-gray-500">Total Expenses</p>
 
-            <p className="font-semibold">
+            <p className="text-xl font-bold">
               ₹{totalExpense.toLocaleString("en-IN")}
             </p>
           </div>
@@ -39,7 +39,7 @@ function Categories() {
               return (
                 <div key={name} className="rounded-lg border p-4">
                   <div className="flex justify-between">
-                    <p>{name}</p>
+                    <p className="font-medium">{name}</p>
 
                     <p className="text-sm text-gray-500">
                       {percentage.toFixed(1)}%
@@ -50,7 +50,7 @@ function Categories() {
                     ₹{amount.toLocaleString("en-IN")}
                   </p>
 
-                  <div className="h-2 w-full rounded-full bg-gray-200">
+                  <div className=" mt-3 h-2 w-full rounded-full bg-gray-200">
                     <div
                       className="h-2 rounded-full bg-blue-500"
                       style={{
