@@ -4,15 +4,31 @@ import SpendingByCategory from "../../components/SpendingByCategory/SpendingByCa
 import transactions from "../../data/transactions";
 
 function Dashboard() {
-  const summary = {
-    balance: 25000,
-    income: 40000,
-    expenses: 15000,
-  };
+
+  const incomeTransactions = transactions.filter(
+    (transaction) => transaction.type === "income"
+  );
+
+  const totalIncome = incomeTransactions.reduce((total, transaction) => {
+    return total + transaction.amount;
+  }, 0);
 
   const expenseTransactions = transactions.filter(
     (transaction) => transaction.type === "expense"
   );
+
+  const totalExpense = expenseTransactions.reduce((total, transaction) => {
+    return total + transaction.amount;
+  }, 0);
+
+  const balance = totalIncome - totalExpense;
+
+    const summary = {
+  balance: balance,
+  income: totalIncome,
+  expenses: totalExpense,
+};
+
 
   const categoryTotals = expenseTransactions.reduce((total, transaction) => {
     total[transaction.category] =
@@ -21,14 +37,12 @@ function Dashboard() {
     return total;
   }, {});
 
-  const categories = Object.entries(categoryTotals).map(
-    ([name,amount])=>{
-      return{
-        name,
-        amount
-      };
-    }
-    )
+  const categories = Object.entries(categoryTotals).map(([name, amount]) => {
+    return {
+      name,
+      amount,
+    };
+  });
   return (
     <div className="p-4 sm:p-6">
       <h1>Dashboard</h1>
