@@ -1,6 +1,7 @@
 import SummaryCards from "../../components/SummaryCards/SummaryCards";
 import RecentTransactions from "../../components/RecentTransactions/RecentTransactions";
 import SpendingByCategory from "../../components/SpendingByCategory/SpendingByCategory";
+import transactions from "../../data/transactions";
 
 function Dashboard() {
   const summary = {
@@ -9,48 +10,25 @@ function Dashboard() {
     expenses: 15000,
   };
 
-  const transactions = [
-    {
-      id: 1,
-      title: "Grocery",
-      category: "Food",
-      amount: 500,
-      type: "expense",
-    },
-    {
-      id: 2,
-      title: "Salary",
-      category: "Income",
-      amount: 40000,
-      type: "income",
-    },
-    {
-      id: 3,
-      title: "Electricity Bill",
-      category: "Utilities",
-      amount: 2500,
-      type: "expense",
-    },
-  ];
+  const expenseTransactions = transactions.filter(
+    (transaction) => transaction.type === "expense"
+  );
 
-  const categories = [
-    {
-      id: 1,
-      name: "Food",
-      amount: 5000,
-    },
-    {
-      id: 2,
-      name: "Transport",
-      amount: 2500,
-    },
-    {
-      id: 3,
-      name: "Utilities",
-      amount: 3000,
-    },
-  ];
+  const categoryTotals = expenseTransactions.reduce((total, transaction) => {
+    total[transaction.category] =
+      (total[transaction.category] || 0) + transaction.amount;
 
+    return total;
+  }, {});
+
+  const categories = Object.entries(categoryTotals).map(
+    ([name,amount])=>{
+      return{
+        name,
+        amount
+      };
+    }
+    )
   return (
     <div className="p-4 sm:p-6">
       <h1>Dashboard</h1>
@@ -61,7 +39,6 @@ function Dashboard() {
         <RecentTransactions transactions={transactions} />
         <SpendingByCategory categories={categories} />
       </div>
-      
     </div>
   );
 }

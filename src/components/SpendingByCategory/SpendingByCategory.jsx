@@ -18,7 +18,7 @@ function SpendingByCategory({ categories }) {
 
                     return (
                         <CategoryItem
-                            key={category.id}
+                            key={category.name}
                             category={category}
                             percentage={percentage}
                         />
