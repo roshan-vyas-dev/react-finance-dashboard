@@ -1,5 +1,5 @@
   const transactions = [
-    { id: 1, title: "Grocery", category: "Food", amount: 800, type: "expense" },
+    { id: 1, title: "Grocery", category: "Food", amount: 500, type: "expense" },
     {
       id: 2,
       title: "Salary",

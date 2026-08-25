@@ -5,7 +5,7 @@ function TransactionItem({ transaction }) {
     <div className="flex items-center justify-between gap-4 rounded-lg border p-4">
       <div className="min-w-0">
         <p className="truncate">{transaction.title}</p>
-        <p>{transaction.category}</p>
+        <p className="text-sm text-gray-500">{transaction.category}</p>
       </div>
       <p
         className={`shrink-0 font-semibold ${

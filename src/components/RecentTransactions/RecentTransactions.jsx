@@ -2,7 +2,7 @@ import TransactionItem from "./TransactionItem";
 
 function RecentTransactions({ transactions }) {
     return (
-     <section className="mt-6">
+     <section >
 
        <h2 className="mb-4 text-xl font-semibold">
                 Recent Transactions
